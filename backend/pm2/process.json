@@ -1,0 +1,12 @@
+{
+  "name" : "api",
+  "script" : "/opt/api/app.local.js",
+  "instances": "max",
+  "exec_mode": "cluster_mode",
+  "node_args": "--max_old_space_size=1024",
+  "max_memory_restart" : "400M",
+  "env_production" : {
+    "environment": "production",
+    "NODE_ENV": "production"
+  }
+}

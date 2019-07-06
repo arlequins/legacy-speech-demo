@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0405a089.chunk.css",
+    "main.js": "/static/js/main.c268203f.chunk.js",
+    "main.js.map": "/static/js/main.c268203f.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/css/2.0444bf5d.chunk.css": "/static/css/2.0444bf5d.chunk.css",
+    "static/js/2.b1e976a8.chunk.js": "/static/js/2.b1e976a8.chunk.js",
+    "static/js/2.b1e976a8.chunk.js.map": "/static/js/2.b1e976a8.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.4007f41153ce484c37abb8cb248cb427.js": "/precache-manifest.4007f41153ce484c37abb8cb248cb427.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.0444bf5d.chunk.css.map": "/static/css/2.0444bf5d.chunk.css.map",
+    "static/css/main.0405a089.chunk.css.map": "/static/css/main.0405a089.chunk.css.map",
+    "static/media/chat-icon.svg": "/static/media/chat-icon.e0d2b748.svg",
+    "static/media/logo-no-bg.svg": "/static/media/logo-no-bg.7718b3e3.svg",
+    "static/media/notification.mp3": "/static/media/notification.0d062b33.mp3"
+  }
+}
