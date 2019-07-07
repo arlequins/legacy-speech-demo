@@ -20,16 +20,20 @@ class App extends Component {
   }
 
   _onMessageWasSent(message) {
-    API.post(`/chat/answer`,{
-      message: message,
-      messageList: this.state.messageList,
+    // API.post(`/chat/answer`,{
+    //   message: message,
+    //   messageList: this.state.messageList,
+    // })
+    //   .then(res => {
+    //     const result = res.data.message
+    //     this.setState({
+    //       messageList: [...this.state.messageList, result]
+    //     })
+    //   })
+
+    this.setState({
+      messageList: [...this.state.messageList, message]
     })
-      .then(res => {
-        const result = res.data.message
-        this.setState({
-          messageList: [...this.state.messageList, result]
-        })
-      })
   }
 
   _sendMessage(question) {
@@ -60,7 +64,7 @@ class App extends Component {
   setEval(evaluation) {
     const answer = this.state.currentAnswer
     if (answer.length > 0) {
-      if (evaluation) {
+      if (evaluation === 0 || evaluation === 1 || evaluation === 3) {
         const newMessagesCount = this.state.isOpen ? this.state.newMessagesCount : this.state.newMessagesCount + 1
 
         this.setState({
@@ -75,16 +79,23 @@ class App extends Component {
         })
       }
 
-      if (!this.state.isEval || (this.state.isEval && evaluation)) {
-        API.post(`/chat/evaluation`, {
-          answer: answer,
-          evaluation: evaluation,
-          messageList: this.state.messageList,
-        })
+      if (!this.state.isEval || (this.state.isEval && evaluation === 0) || (this.state.isEval && evaluation === 3)) {
+        const themList = this.state.messageList.filter(v => v.author === 'them')
+        if (themList.length > 0) {
+          const convertedEval = this.state.isEval && evaluation === 0 ? 1 : evaluation
+          if (evaluation !== 0) {
+            API.post(`/chat/evaluation`, {
+              question: themList[themList.length - 1].data.text,
+              answer: answer,
+              evaluation: convertedEval,
+              messageList: this.state.messageList,
+            })
 
-        this.setState({
-          isEval: true,
-        })
+            this.setState({
+              isEval: true,
+            })
+          }
+        }
       }
     }
   }
@@ -128,10 +139,13 @@ class App extends Component {
           <div className="form-group">
             <h3>EDIT ANSWER AREA</h3>
             <textarea value={this.state.currentAnswer} onChange={this.handleChange} className="form-control rounded-0" rows="3" cols="40"></textarea>
-            <button className="btn btn-primary mb-1" onClick={this.setEval.bind(this, true)}
+            <button className="btn btn-success mb-1" onClick={this.setEval.bind(this, this.state.isEval ? 3 : 0)}
               disabled = {(this.state.currentAnswer.length === 0)? "disabled" : ""}
+            >SEND</button>
+            <button className="btn btn-primary mb-1 left-btn" onClick={this.setEval.bind(this, 1)}
+              disabled = {(this.state.isEval || this.state.currentAnswer.length === 0)? "disabled" : ""}
             >GOOD</button>
-            <button className="btn btn-warning mb-1 left-btn" onClick={this.setEval.bind(this, false)}
+            <button className="btn btn-danger mb-1 left-btn" onClick={this.setEval.bind(this, 2)}
               disabled = {(this.state.isEval || this.state.currentAnswer.length === 0)? "disabled" : ""}
             >BAD</button>
           </div>

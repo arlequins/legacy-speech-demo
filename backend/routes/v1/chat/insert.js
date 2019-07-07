@@ -9,8 +9,6 @@ module.exports = (server, version) => {
     const body = req.body
 
     try {
-      // E: custom part - sql
-
       res.json({
         question: body.question,
         answer: `answer ${body.messageList.length + 1}の答え`,

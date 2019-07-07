@@ -40,6 +40,9 @@
   align-items: center;
 }
 
+.count {
+  padding: 0;
+}
 .form-control {
   width: 100%;
 }
